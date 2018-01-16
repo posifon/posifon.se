@@ -1,0 +1,108 @@
+// main navigation menubar
+$menu-height = 8rem
+$menu-spacing = 2rem // Value of half of the spacing between menu items
+#nav-button
+  display none
+  position absolute
+  top 0
+  right 0
+  height $menu-height
+  width @height
+  background-image url(../img/menu.png)
+  background-repeat no-repeat
+  background-size 4rem 4rem
+  background-position center center
+  float right
+  +below('m')
+    display block
+    cursor pointer
+#nav
+  a:hover
+    text-decoration none
+  span(3/4)
+  +below('m')
+    stack()
+    display none
+  +above('l')
+    display block !important
+  ul // Remove bullet points
+    list-style-type none
+    margin-bottom 0
+  > div // WordPress-created container div
+    float right
+    +below('m')
+      width 100%
+    > ul 
+      > li // Create a horizontal list
+        position relative
+        float left
+        +below('m')
+          float none
+          width 100%
+      a
+        display block
+        color white
+        font-weight 500
+        text-align center
+        padding 0 $menu-spacing
+        +at('l')
+          padding 0 ($menu-spacing / 2)
+        &:active
+          color grey
+    > a
+      display none
+    > ul // First level
+      height $menu-height
+      line-height @height
+      margin 0
+      font-size 1.6rem
+      +below('m')
+        height auto
+        line-height 2
+        font-size 2rem
+      > li
+        height 100%
+        transition(0.2s)
+        &:last-child
+          margin-right -($menu-spacing)
+          +below('m')
+            margin-right 0
+        &:hover
+          transition(0.2s)
+          background-color $posifon-lightred
+          +below('m')
+            transition(0s)
+    li 
+      ul // Second level
+        display none
+        position absolute
+        z-index 300
+        top 100%
+        min-width 100%
+        white-space nowrap
+        +below('m')
+          display block
+          position relative
+          top 0
+          left 0
+      &:hover ul
+        transition(0.2s)
+        display block
+        +below('m')
+          transition(0s)
+        a
+          position relative
+          background-color $posifon-blue
+          transition(0.2s)
+          +above('m')
+            height $menu-height
+            line-height $menu-height
+          +below('m')
+            transition(0s)
+            height auto
+            line-height 2
+          &:hover
+            transition(0.2s)
+            background-color $posifon-lightred
+            +below('m')
+              transition(0s)

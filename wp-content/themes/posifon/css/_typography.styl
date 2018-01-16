@@ -1,0 +1,111 @@
+// typography boilerplate
+
+html
+  font-size: 62.5%
+  font-weight: 100
+  line-height: 1.5
+  font-family "Gill Sans", "Helvetica", sans-serif
+  color $text-color
+  +at('m')
+    font-size: 57%
+    +landscape()
+      font-size 40%
+  +below('s')
+    font-size: 33%
+    font-weight: 400
+    +landscape()
+      font-size 30%
+
+h1, h2, h3, h4, h5, h6, p, ul, ol
+  margin-top: 0
+  margin-bottom: 1rem
+ 
+h1, h2, h3, h4, h5, h6
+  margin-top 1rem
+  margin-bottom: 1rem
+  line-height: 1.1
+
+h1
+  font-family "Adobe Caslon Pro", "Times New Roman", serif
+  font-size 4rem
+  color $posifon-bluegrey
+  font-weight 600
+  &.special
+    color $posifon-blue
+    font-size 5rem
+  +below('xl')
+    &.special
+      font-size 4.2rem
+  +below('s')
+    font-size 3.5rem
+    &.special
+      font-size 4rem
+
+h2
+  font-family "Gill Sans", "Helvetica", sans-serif
+  font-size 3.5rem
+  font-weight 100
+  color $bluegrey-comp
+
+h3
+  font-size 2.5rem
+  font-family "Gill Sans", "Helvetica", sans-serif
+  font-weight 100
+  color $bluegrey-comp
+  &#page-footer
+    color #FFF
+
+h4, h5, h6
+  font-size 2rem
+  font-family "Gill Sans", "Helvetica", sans-serif
+  font-weight 400
+  color $posifon-bluegrey
+  
+p, ul, li, th, td, label, button, input
+  font-size 1.7rem
+  +at('m')
+    font-size: 2rem
+  +at('s')
+    font-size: 2.2rem
+  +at('xs')
+    font-size: 2.4rem
+
+p li
+  margin-left 2rem
+
+main
+  ul, ol
+    padding-left 2rem
+  li
+    padding-left .5rem
+    padding-bottom .5rem
+  a
+    &:hover
+      text-decoration underline
+
+blockquote p
+  color: $blue-comp; 
+  font-family: "Adobe Caslon Pro","Times New Roman",serif;
+  font-size: 2.5rem;
+  font-style: italic;
+  text-align center
+  padding: 1rem 2rem
+
+a
+  color $blue-comp
+  text-decoration none
+  &:hover
+    text-decoration underline
+  &:focus
+    outline 0
+
+.date
+  @extend p
+  font-size 1.4rem
+
+// Change selection color for effect
+::selection
+  background $posifon-lightred // WebKit/Blink Browsers
+
+::-moz-selection
+  background $posifon-lightred // Gecko Browsers

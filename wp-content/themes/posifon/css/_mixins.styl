@@ -1,0 +1,95 @@
+// Functions used for compiling CSS with stylus
+
+// Function for conditional IE styles
+ie($version, $strict = false)
+  if ($is-ie == true)
+    if($strict == true)
+      if ($is-ie--version == $version)
+        {block}
+    else
+      if ($is-ie--version <= $version)
+        {block}
+        
+vendor(prop, args)
+  -webkit-{prop} args
+  -moz-{prop} args
+  -o-{prop} args
+  {prop} args
+
+box-shadow(args...)
+  html.no-boxshadow &
+    border 1px solid #ccc
+    border-top 1px solid #eee
+    border-bottom 3px solid #ccc
+  -webkit-box-shadow args
+  -moz-box-shadow args
+  box-shadow args
+
+transition(args...)
+  -webkit-transition args
+  -moz-transition args
+  -ms-transition args
+  -o-transition args
+  transition args
+
+border-radius(args...)
+ -webkit-border-radius args
+ -moz-border-radius args
+ -ms-border-radius args
+ -o-border-radius args
+ border-radius args
+
+display-flex()
+  html.no-flexbox &
+    display block
+    overflow hidden
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  
+flex-wrap()
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+
+flex-direction(arg)
+  -webkit-flex-direction arg
+  -ms-flex-direction arg
+  flex-direction arg
+
+iphone(prop, $vh)
+  @media all and (device-aspect-ratio: 320/568)
+    {prop} ($vh/100 * 568)px
+  @media all and (device-aspect-ratio: 320/480)
+    {prop} ($vh/100 * 320)px 
+
+//
+///* iPad: portrait */
+//@media screen and (aspect-ratio: 768/716) and (device-aspect-ratio: 768/1024), screen and (aspect-ratio: 768/1024) and (device-aspect-ratio: 768/1024) {
+//    /* styles here */
+//}
+//
+///* iPad: landscape */
+//@media screen and (aspect-ratio: 1024/372) and (device-aspect-ratio: 768/1024), screen and (aspect-ratio: 1024/768) and (device-aspect-ratio: 768/1024) {
+//    /* styles here */
+//}
+//
+///* iPhone 3.5" screen: portrait */
+//@media screen and (aspect-ratio: 320/220) and (device-aspect-ratio: 320/480), screen and (aspect-ratio: 320/480) and (device-aspect-ratio: 320/480) {
+//    /* styles here */
+//}
+//
+///* iPhone 3.5" screen: landscape */
+//@media screen and (aspect-ratio: 480/114) and (device-aspect-ratio: 320/480), screen and (aspect-ratio: 480/320) and (device-aspect-ratio: 320/480) {
+//    /* styles here */
+//}
+//
+///* iPhone 4" screen: portrait */
+//@media screen and (aspect-ratio: 320/308) and (device-aspect-ratio: 320/568), screen and (aspect-ratio: 320/568) and (device-aspect-ratio: 320/568) {
+//    /* styles here */
+//}
+//
+///* iPhone 4" screen: landscape */
+//@media screen and (aspect-ratio: 568/114) and (device-aspect-ratio: 320/568), screen and (aspect-ratio: 568/320) and (device-aspect-ratio: 320/568) {
+//    /* styles here */
+//}

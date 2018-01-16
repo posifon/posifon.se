@@ -1,0 +1,859 @@
+/*   
+Theme Name: Posifon
+Theme URI: 
+Description: This is a theme for posifon.se -- WordPress v4.2.3+
+Author: Fredrik Beckius
+Author URI: http://fredrikbeckius.se
+Version: 2.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+// style.styl
+$is-ie := false
+
+rupture.enable-em-breakpoints = false
+@charset "utf-8"
+
+@import 'jeet'
+
+$posifon-red = #e21018
+$posifon-blue = #1c1e41
+$blue-comp = #3D418D
+
+$posifon-lightred = #E7565B
+$posifon-bluegrey = #67698D
+$bluegrey-comp = #5E65DB
+
+$posifon-lightgrey = #fbfbfb
+
+$text-color = #222
+$main-bgc = $posifon-lightgrey
+$card-bgc = #FFF
+
+@import '_mixins'
+@import '_typography'
+@import '_nav'
+@import '_easy_table'
+@import '_easy_image_gallery'
+
+
+// WordPress Generated Classes
+.aligncenter, div.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.alignleft {
+  float: left;
+}
+.alignright {
+  float: right;
+}
+.wp-caption {
+  background-color: #f3f3f3;
+  border: 1px solid #ddd;
+  -khtml-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px; /* optional rounded corners for browsers that support it */
+  margin: 10px;
+  padding-top: 4px;
+  text-align: center;
+  padding: 10px;
+}
+.wp-caption img {
+  border: 0 none;
+  margin: 0;
+  padding: 0;
+}
+.wp-caption p.wp-caption-text {
+  font-size: 11px;
+  line-height: 17px;
+  margin: 0;
+  padding: 0 4px 5px;
+}
+.sticky {
+  /* not styled */
+}
+.bypostauthor {
+  /* not styled */
+}
+.gallery-caption {
+  /* not styled */
+}
+.size-auto, 
+.size-full,
+.size-large,
+.size-medium,
+.size-thumbnail {
+	max-width: 100%;
+	height: auto;
+}
+
+// End of wp-classes
+
+* { margin: 0; padding: 0; }
+  
+.screen-reader-response
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+
+.screen-reader-text
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+
+body
+  background-color $main-bgc
+
+main a 
+  /img, & img
+      border 0
+
+
+.wrap960
+  +above('xl')
+    center(max-width = 960px)
+  +below('l')
+    center(max-width = 94%)
+  +ie(8)
+    center(max-width = 960px)
+
+.center
+  width 100%
+  margin 0
+  text-align center
+
+.navigation
+  text-align center
+  font-size 1.7rem
+  margin 1rem 0
+
+// Header
+header
+  width 100%
+  background-color $posifon-blue
+//  border-bottom 1px solid $posifon-bluegrey
+  display block
+  +ie(8)
+    height 84px
+
+#logo
+  span(1/4)
+  img
+    height 7rem
+    margin-top .5rem
+    
+$card-pad = 2rem
+$border-radius = 5px
+
+.card
+  border-collapse separate
+  overflow visible
+  padding $card-pad
+  margin 1rem 0
+  border-radius $border-radius
+  background $card-bgc
+  box-shadow: -1px -1px 5px rgba(0,0,0,0.12), 1px 3px 5px rgba(0,0,0,0.24);
+  >h1, > h2,> h3, .margin > h1, .margin > h2, .margin > h3
+    &:first-child
+      text-align center
+  &.border
+    border-bottom 1rem solid $blue-comp
+  +ie(8)
+    width 90%
+
+.card-image
+  margin -($card-pad)
+  margin-bottom $card-pad
+  height 30rem
+  background-size contain
+  background-repeat no-repeat
+  background-position center center
+  -ms-behavior url(backgroundsize.min.htc)
+  border-radius $border-radius $border-radius 0px 0px
+  &.cover
+    background-size cover
+    border-radius $border-radius $border-radius 0px 0px
+
+.card-hover
+  transition: all 0.2s ease-in-out;
+  &:hover
+    cursor pointer
+    border-color $bluegrey-comp
+    box-shadow: -1px -1px 10px rgba(0,0,0,0.20), 1px 3px 10px rgba(0,0,0,0.28);
+    html.no-boxshadow &
+      &:hover
+        border-color $bluegrey-comp
+.margin
+  padding 1rem
+
+.button, button, input[type=submit]
+  @extend p
+  font-family inherit
+  display inline
+  margin 1rem auto
+  text-align center
+  padding .3rem 1rem
+  border 1px solid $posifon-bluegrey
+  border-radius 3px
+  &:hover
+    color #FFF
+    background-color $posifon-bluegrey
+  &.active
+    color #FFF
+    background-color $posifon-bluegrey
+    &:hover
+      background-color @background-color
+      cursor default
+  &:disabled
+    background-color $posifon-lightgrey
+    color #ccc
+
+#content
+  col(3/4)
+  margin-left 0
+  margin-right 0
+  padding 2rem 0
+  +below('m')
+    stack()
+  +ie(8)
+    span(3/4)
+    float left
+    clear left
+
+#aside
+  col(1/4)
+  margin-top 1rem
+  padding-left 2rem
+  padding-top 2rem
+  position relative
+  overflow hidden
+  cf()
+  +below('m')
+    stack()
+  +ie(8)
+    width 20%
+    float right
+    clear right
+  ul
+    list-style-type none
+    padding-left 0px
+  img
+    max-width 80%
+    max-height 50px
+    padding .5rem 0
+    border-left 3px solid transparent
+    +below('l')
+      border-bottom 3px solid transparent
+      border-left none
+    transition: 0.3s;
+    &:hover
+      border-left 3px solid $posifon-blue
+      padding-left 2rem
+      +below('l')
+        padding-left 0
+        border-bottom 3px solid $posifon-blue
+        border-left none
+
+section
+  span(1)
+  &.blank
+    padding 5vh 0
+    min-height 65vh
+    position relative
+    iphone('padding-top', 5)
+    iphone('padding-bottom', 5)
+    iphone('min-height', 80)
+    cf()
+    html.no-cssvhunit &
+      min-height: 60rem;
+      +ie(8)
+        height: auto !important;
+        height: 60rem;
+  &.background-image
+    height 100vh - ($menu-height)
+    iphone('height', 100vh - ($menu-height))
+    position relative
+    overflow hidden
+    background-size cover
+    background-repeat no-repeat
+    background-position center center
+    html.no-cssvhunit &
+      +portrait()
+        height 70rem
+      +landscape()
+        height 55rem
+    +ie(8)
+      display: none
+  &.ie
+    height 600px
+    position relative
+    overflow hidden
+    img
+      height auto
+      width 100%
+
+// Used on the front page
+.text-overlay
+  align(b)
+  +ie(9, true)
+    position static
+    left 0
+    margin-top 10rem
+    -ms-transform: translate(0px, 0px)
+    -webkit-transform: translate(0px, 0px)
+    -moz-transform: translate(0px, 0px)
+    -o-transform: translate(0px, 0px)
+    transform: translate(0px, 0px)
+  z-index 2
+  width 80%
+  padding 2rem
+  background-color alpha($main-bgc, 0.65)
+  filter: unquote("progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#96ffffff', endColorstr='#96ffffff')") /* IE */
+  overflow hidden
+  margin auto
+  html.no-csstransitions &
+    text-align center
+    left 10%
+    top 10%
+  h1
+    text-align right
+    html.no-csstransitions &
+      text-align center
+    +below('l')
+      text-align center 
+  .first-page-col
+    col(1/2, gutter: 6)
+    html.no-csstransitions &
+      stack()
+      margin-top 3rem
+    +below('l')
+      stack()
+      margin-top 3rem
+  .divider
+    position absolute
+    left 50%
+    top 5%
+    height 90%
+    border-left 2px solid $posifon-blue
+    +below('l')
+      display none
+    html.no-csstransitions &
+      display none
+
+.stacked
+  stack()
+  
+.vertical-center
+  align(v)
+  overflow hidden
+
+.col
+  col(1/2)
+  padding 0
+  display-flex()
+  flex-direction(column)
+  overflow visible
+  +portrait()
+    +at('s')
+      stack()
+  +below('xs')
+    stack()
+  +ie(8)
+    float right
+    margin-left 0
+    margin-right 0
+    &:first-child
+      float left
+      margin-right 3%
+
+.col3
+  col(1/3)
+  padding 0
+  display-flex()
+  flex-direction(column)
+  +below('xs')
+    stack()
+  +ie(8)
+    float right
+    margin-left 3%
+    margin-right 0px
+    position relative
+    &:first-child
+      float left
+      margin-left 0px
+
+.row
+  display-flex()
+  flex-wrap()
+  flex-direction(row)
+  overflow visible
+  width 100%
+  +below('m')
+    margin-top 0px
+  >.col, .col3
+    flex-direction(row)
+
+.product-details-line
+  overflow hidden
+
+.tab-box
+  span(1)
+  .tab-nav, .tab-nav li
+    margin 0
+    padding 0
+    padding-left 0
+    list-style none
+  .tab-nav
+    display none
+    cf()
+    .button
+      display block
+      width 80%
+    li
+      col(1/4)
+      +ie(8)
+        margin-right 0
+        margin-left 3%
+        &:first-child
+          margin-left 0px
+      +below('xs')
+        col(1/2)
+        margin-right 0px    
+  .tab-content
+    stack() // will be displayed through javascript
+    .textcol
+      col(5/6)
+    .imagecol
+      col(1/6)
+//  .beskrivning
+//    ;
+//  .detaljer
+//    ;
+//  .tillbehor
+//    ;
+//  .abonnemang
+//    ;
+
+// Beställ popup
+#popup
+  min-width 300px
+  display:none; 
+  text-align center
+
+// Form specifics
+// kontakta mig
+
+#form_kontakta_mig //kontakta mig formulär i footer
+  input[type="text"], input[type="email"], input[type="tel"], input[type="number"]
+    border-radius .2rem
+    padding .3rem
+    margin-bottom 1rem
+    width 100%
+    border none
+    &:focus
+      outline 0
+  input[type="submit"]
+    font-size 1rem
+    border-radius .2rem
+    padding .3rem
+    margin-bottom 1rem
+    border none
+    &:focus
+      outline 0
+
+// besällningsformulär
+
+#form_kontakt
+  fieldset
+    border none
+    float none
+    button
+      margin-top 1rem
+
+  legend
+    @extend h3
+    margin-top .5rem
+
+  label
+    font-size 1.7rem
+    display block
+    padding-top .5rem
+
+  .wpcf7-not-valid-tip
+    color $posifon-red
+
+  .wpcf7-validation-errors
+    color $posifon-red
+
+  .wpcf7-response-output
+    font-size 1.7rem
+
+  input[type="text"], input[type="email"], input[type="tel"], input[type="number"], textarea
+    @extend p
+    display: block;
+    margin 0;
+    width: 100%
+    color $posifon-blue
+    appearance: none
+    box-shadow: none
+    border-radius: none
+    background-color transparent
+    padding: 0;
+    border none
+    border-bottom: 3px solid #c9c9c9;
+    transition: 0.3s;
+    &:focus
+      outline: none
+      border-bottom: 3px solid $posifon-blue;
+    &:focus ~ label
+      color: black
+  textarea
+    margin-top 1rem
+    border: 3px solid #c9c9c9;
+    &:focus
+      border: 3px solid $posifon-blue;
+      
+#form_bestall, #form_bestall_omsorg
+  fieldset
+    border none
+    float none
+    button
+      margin-top 1rem
+
+  legend
+    @extend h4
+
+  label
+    @extend p
+    display block
+    &.clonetext
+      text-transform capitalize
+      font-weight 500
+
+  .alternativ_content
+    padding-left 2rem;
+
+  .wpcf7-not-valid-tip
+    color $posifon-red
+
+  .wpcf7-validation-errors
+    color $posifon-red
+
+  .wpcf7-response-output
+    font-size 1.7rem
+
+  #enhet, #abonnemang, #faktura
+    cf()
+    >label
+      stack()
+    span>label
+      float left
+      width 10rem
+      height 11rem
+      margin-left 2rem
+      line-height 0
+      +ie(8)
+        height auto
+        line-height auto
+      html.no-svg &
+        height auto
+        line-height auto
+      >span // Kvadrater vars bakgrundsbild justeras i beställningsformuläret.
+        display block
+        width 10rem
+        height 10rem
+        line-height 1.1
+        font-size 1.5rem
+        text-align center
+        background-size: 6rem auto
+        background-position center center
+        background-repeat no-repeat
+        opacity 0.5
+        border none
+        border-bottom: 3px solid $posifon-lightgrey;
+        &:hover
+          opacity 1
+    input[type="radio"]:checked + span
+      outline: none
+      border-bottom: 3px solid $posifon-blue;
+      opacity 1
+    input[type="radio"]
+      display: none
+      +ie(8)
+        display inline
+      html.no-svg &
+        display inline
+  #faktura, #abonnemang, #telenat // Mindre bilder ser snyggare ut för dessa
+    label
+      >span
+        background-size: 4rem auto
+
+  input[type="text"], input[type="email"], input[type="tel"], input[type="number"], textarea
+    display: block;
+    margin 0;
+    width: 100%
+    font-size 1.7rem
+    line-height 1.5
+    color $posifon-blue
+    appearance: none
+    box-shadow: none
+    border-radius: none
+    background-color transparent
+    padding: 0;
+    border none
+    border-bottom: 3px solid #c9c9c9;
+    transition: 0.3s;
+    &:focus
+      outline: none
+      border-bottom: 3px solid $posifon-blue;
+    &:focus ~ label
+      color: black
+  textarea
+    margin-top 1rem
+    height 10rem
+    border: 3px solid #c9c9c9;
+    &:focus
+      border: 3px solid $posifon-blue;
+
+  input[type="submit"]
+    margin-top 1rem
+    &:focus
+      outline 0
+
+.expander-content
+  display none;
+
+.kunskap-container
+  overflow hidden
+  position relative
+  &:hover
+    cursor default
+    h3
+      cursor pointer
+  .arrow, .x
+    position absolute
+    top 2.8rem
+    right 2rem
+    height 3rem
+    width 2.5rem
+    z-index 99
+    background-size contain
+    background-repeat no-repeat
+  .arrow
+    background-image: url(../img/arrow.bluegrey.png);
+    background-image: 
+    linear-gradient(transparent, transparent),
+    url(../img/arrow.bluegrey.min.svg);
+  .x
+    background-image: url(../img/x.bluegrey.png);
+    background-image: 
+    linear-gradient(transparent, transparent),
+    url(../img/x.bluegrey.min.svg);
+  .expanded
+    display none
+  .kunskap-title
+    col(9/10)
+  .kunskap-content
+    display none
+    span(1)
+    img
+      col(1/6)
+      height auto
+    .kunskap-text
+      col(5/6)
+      padding-left 2rem
+    .kunskap-link
+      col(1/6)
+
+.widget_links h3 //remove header from Samarbetspartners (and other link widgets)
+  display none
+
+$footer-height = 30rem
+#page-footer
+  padding-top 1rem
+  background-color $posifon-blue
+  color white
+  a, p, h1, h2, h3
+    color inherit
+  a:hover
+    text-decoration underline
+  .widget-area
+    col(1/3)
+    &:nth-child(3)
+      margin-right 0
+    +ie(8)
+      span(1/3)
+      margin 0
+      float left;
+  ul
+    list-style-type none
+
+#copyright
+  stack()
+  text-align center
+  p
+    line-height 4rem
+    font-size 1.2rem
+
+//// sticky footer by http://ryanfait.com/html5-sticky-footer/
+//html, body
+// height 100%
+//
+//.wrapper
+//  min-height 100%
+//  height auto !important
+//  height 100%;
+//  margin-bottom -($footer-height)
+//  +ie(8)
+//    margin-bottom 0px
+//
+//#page-footer
+//  height $footer-height
+//  margin-top -(@height)
+//  +ie(8)
+//    margin-top 0px
+//.push
+//  height $footer-height
+//  
+//// end sticky footer
+
+// animated container
+@keyframes updown {
+    0%{
+        transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(-10px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}
+
+@-webkit-keyframes updown {
+    0%{
+        -webkit-transform: translateY(0px);
+    }
+    50%{
+        -webkit-transform: translateY(-10px);
+    }
+    100%{
+        -webkit-transform: translateY(0px);
+    }
+}
+
+#arrow
+  position absolute
+  z-index 1
+  bottom 10%
+  left 0
+  width 100%
+  z-index 99
+  animation: updown 1s ease-in-out infinite;
+  -webkit-animation: updown 1s ease-in-out infinite;
+  +ie(8)
+    bottom: 2%
+  +below('s')
+    display none
+  a
+    display block
+    width: 6rem
+    height: 5rem
+    margin auto
+    background-image: url(../img/arrow.png);
+    background-image: 
+    linear-gradient(transparent, transparent),
+    url(../img/arrow.min.svg);
+    background-size contain
+    background-repeat no-repeat
+
+
+// Print styles ...........................................
+@media print
+  *
+    overflow visible !important
+  header 
+    display none
+  footer
+    display none
+  html
+    font-size: 62.5%
+    font-family "Times", serif
+  body
+    background-color #FFF
+    color #000
+  p, h1, h2, h3, h4, h5, h6
+    color #000
+  .card
+    padding 0
+    margin 0
+    border-radius 0
+    background transparent
+    box-shadow none
+    border none
+    >h1, > h2,> h3, .margin > h1, .margin > h2, .margin > h3
+      &:first-child
+        text-align left
+    &.border
+      border-bottom none
+  .card-image
+    -webkit-print-color-adjust exact
+    margin 0
+    margin-top 1rem
+    background-position top left
+    &.cover
+      background-size contain
+  .wrap960
+    width 100%
+  #content, #aside, .col, .row
+    stack()
+    display inline
+  section
+    display block
+    min-height 0
+    height auto
+    padding 0
+    margin 0
+    &.background-image, &.blank
+      height auto
+      padding 0
+      margin 0
+      min-height 0
+    &.background-image
+      height 100vh
+      background-size contain
+      background-position top center
+  #arrow
+    display none
+  .text-overlay
+    width 100%
+    padding-top 10rem
+    display inline
+    position absolute
+    bottom 0
+    h1
+      text-align center
+    .first-page-col
+      stack()
+  .expander-content
+    display inline
+  .kunskap-content
+    display inline
+  .center
+    text-align left
+  .tab-box
+    display block
+    .tab-nav
+      display none
+    .tab-content
+      display inline !important
